@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ficha Clínica</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <header class="bg-success text-white py-3">
+    <div class="container">
+      <h1 class="h3">Ficha Clínica</h1>
+    </div>
+  </header>
+
+  <main class="flex-fill">
+    <section class="container py-5">
+      <article class="card shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title mb-4">Registro de Paciente</h2>
+          <form id="record-form" novalidate>
+            <div id="record-message"></div>
+
+            <fieldset class="mb-3">
+              <legend>Datos del Paciente</legend>
+
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="diagnostico" class="form-label">Diagnóstico</label>
+                <input type="text" id="diagnostico" name="diagnostico" class="form-control" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="edad" class="form-label">Edad</label>
+                <input type="number" id="edad" name="edad" class="form-control" min="0" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="tratamiento" class="form-label">Tratamiento</label>
+                <textarea id="tratamiento" name="tratamiento" class="form-control" rows="3" required></textarea>
+              </div>
+            </fieldset>
+
+            <button type="submit" class="btn btn-success">Guardar Ficha</button>
+          </form>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="bg-light text-center py-3">
+    <small>&copy; 2025 Sistema Clínico</small>
+  </footer>
+
+  <!-- Bootstrap 5 JS bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Validaciones -->
+  <script src="js/validation.js"></script>
+</body>
+</html>
