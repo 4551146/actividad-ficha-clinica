@@ -61,5 +61,15 @@ public class LoginSteps {
         assertTrue(lbRegistroPaciente.contains(tituloRegistro), "Mensaje esperado: " + tituloRegistro + ", pero se obtuvo: " + lbRegistroPaciente);
         
     }
+
+    // Login fallido
+
+    
+
+    @Then("debería mostrar mensaje de error {string}")
+    public void deberia_ver_mensaje_de_error(String mensajeErrorEsperado) {
+        String mensajeErrorReal = loginPage.errorLogin();
+        assertTrue(mensajeErrorReal.contains(mensajeErrorEsperado), "Mensaje esperado: " + mensajeErrorEsperado + ", pero se obtuvo: " + mensajeErrorReal);
+    }
   
 }

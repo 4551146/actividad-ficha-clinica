@@ -7,8 +7,8 @@ Feature: Inicio de sesión de médico
 
     @loginFallido
     Scenario Outline: Login fallido con credenciales inválidas
-        Given que el médico está en la página de inicio de sesión
-        When ingresa su nombre de usuario "<usuario>" y contraseña "<clave>"
+        Given médico está en la página de inicio de sesión
+        When ingresa su nombre de usuario "<usuario>" y contraseña "<clave>" para iniciar sesión
         Then debería mostrar mensaje de error "Credenciales inválidas. Intenta de nuevo."
 
         Examples:
