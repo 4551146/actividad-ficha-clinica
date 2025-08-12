@@ -27,6 +27,7 @@ public class LoginSteps {
         WebDriverManager.chromedriver().clearDriverCache().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("window-size=1920,1080");
         driver = new ChromeDriver(chromeOptions);
         loginPage = new LoginPage(driver);
     }
@@ -63,9 +64,6 @@ public class LoginSteps {
     }
 
     // Login fallido
-
-    
-
     @Then("debería mostrar mensaje de error {string}")
     public void deberia_ver_mensaje_de_error(String mensajeErrorEsperado) {
         String mensajeErrorReal = loginPage.errorLogin();

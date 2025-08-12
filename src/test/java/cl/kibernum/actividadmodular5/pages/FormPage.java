@@ -1,7 +1,12 @@
 package cl.kibernum.actividadmodular5.pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FormPage {
     
@@ -12,7 +17,7 @@ public class FormPage {
     private By ageField = By.id("edad");
     private By treatmentField = By.id("tratamiento");
     private By btnSave = By.xpath("//button[text()='Guardar Ficha']");
-    private By lbRegistroPaciente = By.id("record-message");
+    private By lbFichaRegistrada = By.id("record-message");
 
     public FormPage(WebDriver driver) {
         this.driver = driver;
@@ -27,6 +32,6 @@ public class FormPage {
     }
 
     public String getMensajeRegistro(){
-        return driver.findElement(lbRegistroPaciente).getText();
+        return driver.findElement(lbFichaRegistrada).getText();
     }
 }
