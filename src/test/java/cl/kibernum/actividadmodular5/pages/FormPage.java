@@ -12,6 +12,7 @@ public class FormPage {
     private By ageField = By.id("edad");
     private By treatmentField = By.id("tratamiento");
     private By btnSave = By.xpath("//button[text()='Guardar Ficha']");
+    private By lbRegistroPaciente = By.id("record-message");
 
     public FormPage(WebDriver driver) {
         this.driver = driver;
@@ -23,5 +24,9 @@ public class FormPage {
         driver.findElement(ageField).sendKeys(String.valueOf(edad));
         driver.findElement(treatmentField).sendKeys(tratamiento);
         driver.findElement(btnSave).click();
+    }
+
+    public String getMensajeRegistro(){
+        return driver.findElement(lbRegistroPaciente).getText();
     }
 }
