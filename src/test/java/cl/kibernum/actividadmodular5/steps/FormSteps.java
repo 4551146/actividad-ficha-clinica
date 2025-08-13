@@ -2,23 +2,18 @@ package cl.kibernum.actividadmodular5.steps;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.File;
-import java.net.URL;
+import java.util.List;
 import java.util.Map;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
+import cl.kibernum.actividadmodular5.hooks.DriverHolder;
 import cl.kibernum.actividadmodular5.pages.FormPage;
-import cl.kibernum.actividadmodular5.pages.LoginPage;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import java.util.Arrays;
 
 public class FormSteps {
 
@@ -26,28 +21,15 @@ public class FormSteps {
     private FormPage formPage;
 
     @Before
-    public void setUp() {
-        WebDriverManager.chromedriver().clearDriverCache().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
-        chromeOptions.addArguments("window-size=1920,1080");
-        driver = new ChromeDriver(chromeOptions);
-        formPage = new FormPage(driver);
-    }
-
-    @After
-    public void tearDown() {
-        if(driver != null) {
-        driver.quit();
-        }
+    public void init() {
+        this.driver = DriverHolder.get();
+        this.formPage = new FormPage(driver);
     }
 
     @Given("médico está en la página de para rellenar formulario registro de paciente")
     public void que_el_usuario_esta_en_la_pagina_de_registro_de_paciente() {
         try {
-            File loginHTML = new File("src/test/resources/html/ficha.html");
-            URL url = loginHTML.toURI().toURL();
-            driver.get(url.toString());
+            driver.get("https://clinica-modular.netlify.app/");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error al cargar el archivo HTML", e);
@@ -69,9 +51,11 @@ public class FormSteps {
 
     @Then("se muestra mensaje de confirmación {string}")
     public void deberia_ver_mensaje_de_registro_exitoso(String mensajeRegistro) {
+        List<String> lista = Arrays.asList(mensajeRegistro.split("/"));
         String mensajeRegistroReal = formPage.getMensajeRegistro();
-        assertTrue(mensajeRegistroReal.contains(mensajeRegistro), "Mensaje esperado: " + mensajeRegistro + ", pero se obtuvo: " + mensajeRegistroReal);
-        
+            for (String err : lista) {
+                assertTrue(mensajeRegistroReal.contains(err), "Mensaje esperado: " + mensajeRegistro + ", pero se obtuvo: " + mensajeRegistroReal);
+            }
     }    
 
 }

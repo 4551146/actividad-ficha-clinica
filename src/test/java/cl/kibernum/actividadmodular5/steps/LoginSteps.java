@@ -2,49 +2,30 @@ package cl.kibernum.actividadmodular5.steps;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.File;
-import java.net.URL;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
+import cl.kibernum.actividadmodular5.hooks.DriverHolder;
 import cl.kibernum.actividadmodular5.pages.LoginPage;
-import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class LoginSteps {
 
     private WebDriver driver;
     private LoginPage loginPage;
-    
-    @Before
-    public void setUp() {
-        WebDriverManager.chromedriver().clearDriverCache().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
-        chromeOptions.addArguments("window-size=1920,1080");
-        driver = new ChromeDriver(chromeOptions);
-        loginPage = new LoginPage(driver);
-    }
 
-    @After
-    public void tearDown() {
-        if(driver != null) {
-        driver.quit();
-        }
+    @Before
+    public void init() {
+        this.driver = DriverHolder.get();
+        this.loginPage = new LoginPage(driver);
     }
 
     @Given("médico está en la página de inicio de sesión")
     public void que_el_usuario_esta_en_la_pagina_de_login() {
     try {
-        File loginHTML = new File("src/test/resources/html/index.html");
-        URL url = loginHTML.toURI().toURL();
-        driver.get(url.toString());
+        driver.get("https://clinica-modular.netlify.app/");
     } catch (Exception e) {
         e.printStackTrace();
         throw new RuntimeException("Error al cargar el archivo HTML", e);

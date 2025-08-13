@@ -1,12 +1,7 @@
 package cl.kibernum.actividadmodular5.pages;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FormPage {
     
@@ -27,7 +22,9 @@ public class FormPage {
         driver.findElement(nameField).sendKeys(nombrePaciente);
         driver.findElement(diagnosticField).sendKeys(diagnostico);
         driver.findElement(ageField).sendKeys(String.valueOf(edad));
-        driver.findElement(treatmentField).sendKeys(tratamiento);
+        if(tratamiento != null){
+            driver.findElement(treatmentField).sendKeys(tratamiento);
+        }
         driver.findElement(btnSave).click();
     }
 

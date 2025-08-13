@@ -1,4 +1,5 @@
 Feature: Inicio de sesión de médico
+
     @login
     Scenario: Login exitoso con credenciales válidas
         Given médico está en la página de inicio de sesión
